@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.haoid.cn" versionCode="0.6">
+    <application setting="false">
+        <name><![CDATA[迈联平台]]></name>
+        <identifie><![CDATA[yh_mailian]]></identifie>
+        <version><![CDATA[5.0]]></version>
+        <type><![CDATA[business]]></type>
+        <ability><![CDATA[迈联平台管理]]></ability>
+        <description><![CDATA[巡检运维,维修运维,新媒体运维,教育云运维,统计查询,平台管理（单位录入、用户录入、项目录入、部门录入）]]></description>
+		<author><![CDATA[迈联科技(www.gxmylink.com)]]></author>
+		<url><![CDATA[http://www.gxmylink.com]]></url>
+    </application>
+    <platform>
+        <subscribes>
+        </subscribes>
+        <handles>
+            <message type="text" />
+        </handles>
+        <rule embed="true" />
+    </platform>
+    <bindings>
+        <cover>
+            <entry title="迈联微信入口设置" do="index" />
+        </cover>
+        <menu>
+            <entry title="巡检运维" do="hotel" state="" direct="false" />
+            <entry title="维修运维" do="repair" state="" direct="false" />
+            <entry title="新媒体运维" do="newmedia" state="" direct="false" />
+            <entry title="教育云运维" do="education" state="" direct="false" />
+            <entry title="单位录入" do="companyinput" state="" direct="false" />
+            <entry title="用户录入" do="userinput" state="" direct="false" />
+            <entry title="项目录入" do="projectinput" state="" direct="false" />
+            <entry title="部门录入" do="departmentinput" state="" direct="false" />
+        </menu>
+		 
+    </bindings>
+	
+    <install><![CDATA[
+
+CREATE TABLE IF NOT EXISTS `ims_gxmylink` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `displayorder` int(11) DEFAULT '0',
+  `department` varchar(255) DEFAULT '0',
+  `maintain` varchar(255) DEFAULT '',
+  `company` varchar(255) DEFAULT '',
+  `statime` varchar(30) DEFAULT '',
+  `endtime` varchar(30) DEFAULT '',
+  `description` text,
+  `content` text,
+  `traffic` text,
+  `device` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_gxmylinkcp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `title` varchar(255) DEFAULT '',
+  `style` varchar(255) DEFAULT '',
+  `contact` varchar(255) DEFAULT '',
+  `mobile` varchar(255) DEFAULT '',
+  `address` varchar(255) DEFAULT '',
+  `contract` varchar(255) DEFAULT '',
+  `increasetime` varchar(30) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_gxmylinkus` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `user` varchar(255) DEFAULT '',
+  `pwd` varchar(255) DEFAULT '',
+  `department` varchar(255) DEFAULT '',
+  `username` varchar(255) DEFAULT '',
+  `from_user` varchar(255) DEFAULT '',
+  `increasetime` varchar(30) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_gxmylinkpj` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `title` varchar(255) DEFAULT '',
+  `department` varchar(255) DEFAULT '',
+  `contractmoney` varchar(255) DEFAULT '',
+  `contract` varchar(255) DEFAULT '',
+  `startime` varchar(255) DEFAULT '',
+  `endtime` varchar(255) DEFAULT '',
+  `describe` varchar(255) DEFAULT '',
+  `firstpayment` varchar(255) DEFAULT '',
+  `secondpayment` varchar(255) DEFAULT '',
+  `thirdpayment` varchar(255) DEFAULT '',
+  `apirpayment` varchar(255) DEFAULT '',
+  `firepayment` varchar(255) DEFAULT '',
+  `increasetime` varchar(30) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_gxmylinkdm` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `title` varchar(255) DEFAULT '',
+  `increasetime` varchar(30) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_gxmylinkrp` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `displayorder` int(11) DEFAULT '0',
+  `department` varchar(255) DEFAULT '0',
+  `maintain` varchar(255) DEFAULT '',
+  `company` varchar(255) DEFAULT '',
+  `address` varchar(255) DEFAULT '',
+  `statime` varchar(30) DEFAULT '',
+  `endtime` varchar(30) DEFAULT '',
+  `description` text,
+  `content` text,
+  `traffic` text,
+  `device` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `ims_gxmylinkmedio` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `displayorder` int(11) DEFAULT '0',
+  `department` varchar(255) DEFAULT '0',
+  `maintain` varchar(255) DEFAULT '',
+  `company` varchar(255) DEFAULT '',
+  `statime` varchar(30) DEFAULT '',
+  `title` varchar(30) DEFAULT '',
+  `description` text,
+  `content` text,
+  `device` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE IF NOT EXISTS `ims_gxmylinked` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `weid` int(11) DEFAULT '0',
+  `displayorder` int(11) DEFAULT '0',
+  `department` varchar(255) DEFAULT '0',
+  `maintain` varchar(255) DEFAULT '',
+  `company` varchar(255) DEFAULT '',
+  `statime` varchar(30) DEFAULT '',
+  `title` varchar(30) DEFAULT '',
+  `description` text,
+  `content` text,
+  `device` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+	  ]]></install>
+	  
+    <uninstall><![CDATA[
+	drop table IF  EXISTS `ims_gxmylink`;
+	drop table IF  EXISTS `ims_gxmylinkcp`;
+	drop table IF  EXISTS `ims_gxmylinkus`;
+	drop table IF  EXISTS `ims_gxmylinkpj`;
+	drop table IF  EXISTS `ims_gxmylinkdm`;
+	drop table IF  EXISTS `ims_gxmylinkrp`;
+	drop table IF  EXISTS `ims_gxmylinkmedio`;
+	drop table IF  EXISTS `ims_gxmylinked`;
+	 ]]></uninstall>
+    <upgrade><![CDATA[update.php]]></upgrade>
+
+</manifest>

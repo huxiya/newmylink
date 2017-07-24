@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>员工注册页面</title>
+  <link rel="stylesheet" href="{php echo $this->_css_url}reset.css">
+  <link rel="stylesheet" href="{php echo $this->_css_url}base.css">
+</head>
+<body>
+<div class="logo-title">
+  <h1>迈联科技运维管理平台</h1>
+  <h4>员工注册</h4>
+</div>
+<form action="{$register}&op=edit" id="register" class="row container">
+  <input type="text" name="user" id="user" class="col-12 text icon-user" placeholder="请输入账户名（手机号）">
+  <input type="password" name="password" id="password" class="col-12 text mt40 icon-password" placeholder="请输入密码">
+  <input type="text" name="userName" id="userName" class="col-12 text mt40 icon-userName" placeholder="请输入姓名">
+  <select name="department" id="department" class="col-12 text mt40 icon-department">
+    <option value="">请选择你所在部门</option>
+	{loop $listdm $cp}
+		<option value="{$cp['title']}">{$cp['title']}</option>
+	{/loop}
+  </select>
+  <a  onclick="get_mobile_code()"  class="col-12 link-btn mt40 js-register">注册</a>
+</form>
+<script src="{php echo $this->_script_url}jquery-1.11.1.min.js"></script>
+<script src="{php echo $this->_script_url}resize.js"></script>
+<script src="{php echo $this->_script_url}jquery.validate.js"></script>
+<script src="{php echo $this->_script_url}zdy-vlidate.js"></script>
+<script src="{php echo $this->_script_url}messages_zh.js"></script>
+<script src="{php echo $this->_script_url}main.js"></script>
+</body>
+</html>
+<script language="javascript">
+	function get_mobile_code(){
+		var url = window.location.href;
+		var url1=url+'&op=edit';
+		
+		var unitName1=document.getElementById("user").value;
+		var category1=document.getElementById("password").value;
+		var InspectionDate1=document.getElementById("userName").value;
+		var InspectionContent1=document.getElementById("department").value;
+		
+		var reg = /^1[3|4|5|7|8][0-9]{9}$/; //验证规则
+		var flag = reg.test(unitName1); //true
+		
+		if (unitName1==''||category1==''||InspectionDate1==''||InspectionContent1==''||flag==false) {
+				return false;
+		}else{
+		
+        $.post(url1,{text1:jQuery.trim($('#user').val()),text2:jQuery.trim($('#password').val()),text3:jQuery.trim($('#userName').val()),text4:jQuery.trim($('#department').val())}, function(msg) {
+            msg = msg.substring(0, 1);
+			if(msg=='1'){
+				alert('提交成功');
+				var strsend = url.replace('register', 'menu');
+				window.location.href=strsend; 
+			}else{
+			//	var strsend = url.replace('login', 'menu');
+			//	window.location.href=strsend; 
+				alert('用户名已存在');
+			}
+        });
+		}
+	};
+	</script>

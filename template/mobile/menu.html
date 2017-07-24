@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>员工工作登记</title>
+  <link rel="stylesheet" href="{php echo $this->_css_url}reset.css">
+  <link rel="stylesheet" href="{php echo $this->_css_url}base.css">
+</head>
+<body>
+<div class="logo-title">
+  <h1>迈联科技运维管理平台</h1>
+  <h4>工作登记</h4>
+</div>
+<div class="row msg-container menu-box">
+  <div class="row mb60" >
+    <a href="{$inspection}" class="col-4 link-inspection">
+      <p class="icon-box icon-Inspection"></p>
+      <span>运维巡检</span>
+    </a>
+    <a href="{$service}" class="col-4">
+      <p class="icon-box icon-service"></p>
+      <span>维修运维</span>
+    </a>
+    <a href="{$newmedia}" class="col-4">
+      <p class="icon-box icon-newMedia"></p>
+      <span>新媒体运维</span>
+    </a>
+    
+  </div>
+  <a href="{$icloud}" class="col-4">
+    <p class="icon-box icon-ICloud"></p>
+    <span>教育云运维</span>
+  </a>
+  <a href="stat.html" class="col-4">
+    <p class="icon-box icon-stat"></p>
+    <span>统计查询</span>
+  </a>
+  <a href="{$adminmenu}" class="col-4">
+    <p class="icon-box icon-manage"></p>
+    <span>平台管理</span>
+  </a>
+</div>
+<script src="{php echo $this->_script_url}resize.js"></script>
+</body>
+</html>
