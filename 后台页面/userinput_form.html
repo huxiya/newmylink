@@ -1,0 +1,73 @@
+{template 'common/header'}
+{template 'common'}
+<div class="main">
+	<ul class="nav nav-tabs">
+		<li><a href="{php echo $this->createWebUrl('userinput');}">用户列表</a></li>
+		<li{if $op=='edit' && empty($id)} class="active"{/if}><a href="{php echo $this->createWebUrl('userinput',array('op'=>'edit'));}">添加用户</a></li>
+		{if $op=='edit' && !empty($id)}<li class="active"><a href="{php echo $this->createWebUrl('userinput',array('op'=>'edit','id'=>$id));}">编辑用户</a></li>{/if}
+	</ul>
+	<form action="" class="form-horizontal form" method="post" onsubmit="return formcheck()">
+		<input type="hidden" name="id" value="{$item['id']}">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				用户信息录入
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">部门名称</label>
+					<div class="col-sm-9 col-xs-12">
+						<select class='form-control' name='department' id='department'>
+							<option value=''>--请选择部门名称--</option>
+							<option value ="运维一线">运维一线</option>
+							<option value ="运维二线">运维二线</option>
+							<option value ="运维三线">运维三线</option>
+							<option value ="运维开发">运维开发</option>
+							<option value ="运维策划编辑">运维策划编辑</option>
+							<option value ="运维推广培训">运维推广培训</option>
+						</select>
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">用户账户</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="user" id="user" value="{$item['user']}" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">用户密码</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="pwd" id="pwd" value="{if $item['pwd'] !=''}*******{else}{/if}" class="form-control">
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-3 col-md-2 control-label">用户姓名</label>
+					<div class="col-sm-9 col-xs-12">
+						<input type="text" name="username" id="username" value="{$item['username']}" class="form-control">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group col-sm-12">
+			<input type="submit" name="submit" value="提交" class="btn btn-primary col-lg-1" />
+			<input type="hidden" name="token" value="{$_W['token']}" />
+		</div>
+	</form>
+	<script type="text/javascript">
+		function formcheck() {
+			var department=document.getElementById("department").value;
+			var style=document.getElementById("style").value;
+			if (department=='') {
+				Tip.select("department", "请填写部门名称!", "right");
+				return false;
+			}
+			if (style=='') {
+				Tip.select("style", "请填写单位类别!", "right");
+				return false;
+			}
+			return true;
+		}
+	</script>
+

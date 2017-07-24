@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>员工登录页面</title>
+  <link rel="stylesheet" href="{php echo $this->_css_url}reset.css">
+  <link rel="stylesheet" href="{php echo $this->_css_url}base.css">
+</head>
+<body>
+  <div class="logo-title">
+    <h1>迈联科技运维管理平台</h1>
+    <h4>员工登录</h4>
+  </div>
+  <form action="{$login}&op=edit" class="container row">
+    <input type="text" class="col-12 text icon-user" placeholder="请输入用户名" id="username">
+    <input type="password" class="col-12 text mt40 icon-password" placeholder="请输入密码" id="password">
+    <a onclick="get_mobile_code()" class="col-12 link-btn mt40">登录</a>
+    <a href="{$register}" class="col-12 link-btn mt40">注册</a>
+  </form>
+<script src="{php echo $this->_script_url}resize.js"></script>
+<script src="{php echo $this->_script_url}jquery-1.11.1.min.js"></script>
+</body>
+</html>
+	<script language="javascript">
+	function get_mobile_code(){
+		var url = window.location.href;
+		var url1=url+'&op=edit';
+        $.post(url1,{text1:jQuery.trim($('#username').val()),text2:jQuery.trim($('#password').val())}, function(msg) {
+            msg = msg.substring(0, 1);
+			if(msg=='1'){
+				alert('用户名或密码错误');
+			}else{
+				var strsend = url.replace('login', 'menu');
+				window.location.href=strsend; 
+			}
+        });
+	};
+	</script>
