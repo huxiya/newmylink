@@ -80,6 +80,7 @@ p.error{
 .text {
   padding-left: 0.8rem;
   font-size: 0.32rem;
+  height: .62rem;
   line-height: 0.62rem;
   color: #222;
   border: 0;

@@ -37,7 +37,7 @@ $().ready(function(){
           chinese: true
         },
         //巡检运维表单验证
-        unitName: {
+        flatname: {
           required: true,
           selectNone: true
         },
