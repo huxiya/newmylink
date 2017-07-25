@@ -40,7 +40,7 @@ jQuery.validator.addMethod("chinese", function(value, element) {
 
 // 下拉框验证
 $.validator.addMethod("selectNone", function(value, element) {
-  return value != "-1";
+  return value != "请选择";
 }, "*必须选择一项");
 
 // 字节长度验证
