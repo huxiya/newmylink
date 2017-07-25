@@ -1521,7 +1521,9 @@ class Yh_mailianModuleSite extends WeModuleSite {
 		$op = $_GPC['op'];
 		
 		$user_info = pdo_fetch("SELECT * FROM " . tablename('gxmylinkus') . " WHERE from_user = :from_user", array(':from_user' => $from_user));
-		$listcp = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp'));
+		$listcpa = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='机关'");
+		$listcpb = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='学校'");
+		$listcpc = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='企业'");
 		$service = $this->createMobileUrl('service', array('from_user' => $from_user));
 		
 		if ($op == 'edit') {
@@ -1558,7 +1560,9 @@ class Yh_mailianModuleSite extends WeModuleSite {
 		$op = $_GPC['op'];
 		
 		$user_info = pdo_fetch("SELECT * FROM " . tablename('gxmylinkus') . " WHERE from_user = :from_user", array(':from_user' => $from_user));
-		$listcp = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp'));
+		$listcpa = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='机关'");
+		$listcpb = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='学校'");
+		$listcpc = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='企业'");
 		$newmedia = $this->createMobileUrl('newmedia', array('from_user' => $from_user));
 		
 		if ($op == 'edit') {
@@ -1640,7 +1644,9 @@ class Yh_mailianModuleSite extends WeModuleSite {
 		$weid = $this->_weid;
 		$from_user = $_GPC['from_user'];
 		$op = $_GPC['op'];
-		
+		$listcpa = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='机关'");
+		$listcpb = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='学校'");
+		$listcpc = pdo_fetchall("SELECT * FROM " . tablename('gxmylinkcp')."where style='企业'");
 		if ($op == 'edit') {
 				
 				$insert = array(

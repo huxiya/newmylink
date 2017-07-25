@@ -12,18 +12,20 @@
   <h4 class="mb60">>>>单位录入</h4>
   <form action="" class="row  msg-box">
     <ul class="row">
-      <li class="row">
-        <label for="" class="col-4">类别：</label>
-        <select name="style1" id="style1" class="col-8">
-          <option value="">请选择单位类别</option>
-          <option value="机关">机关</option>
-          <option value="学校">学校</option>
-          <option value="企业">企业</option>
+      
+	  <li class="row">
+        <label for="" class="col-4">单位类型：</label>
+        <select name="flatType" id="flatType" class="col-8">
+          <option selected="selected">请选择单位类别</option>
         </select>
-      <li class="row">
-        <label class="col-4">单位名称：</label>
-        <input type="text" class="col-8 msg-date" placeholder="请输入单位名称" name="title" id="title">
       </li>
+	  <li class="row">
+        <label for="" class="col-4">单位名称：</label>
+        <select name="flatname" id="flatname" class="col-8">
+          <option selected="selected">请选择巡检单位</option>
+        </select>
+      </li>
+	  
       <li class="row">
         <label for="" class="col-4">联系人：</label>
         <input type="text" class="col-8 msg-date" placeholder="请输入联系人姓名" name="man" id="man">
@@ -54,8 +56,8 @@
 		var url = window.location.href;
 		var url1=url+'&op=edit';
 		
-		var unitName1=document.getElementById("style1").value;
-		var category1=document.getElementById("title").value;
+		var unitName1=document.getElementById("flatType").value;
+		var category1=document.getElementById("flatname").value;
 		var InspectionDate1=document.getElementById("man").value;
 		var InspectionContent1=document.getElementById("tel").value;
 		var problemLog1=document.getElementById("addressa").value;
@@ -64,7 +66,7 @@
 				return false;
 		}else{
 		
-        $.post(url1,{text1:jQuery.trim($('#style1').val()),text2:jQuery.trim($('#title').val()),text3:jQuery.trim($('#man').val()),text4:jQuery.trim($('#tel').val()),text5:jQuery.trim($('#addressa').val()),text6:jQuery.trim($('#hetong').val())}, function(msg) {
+        $.post(url1,{text1:jQuery.trim($('#flatType').val()),text2:jQuery.trim($('#flatname').val()),text3:jQuery.trim($('#man').val()),text4:jQuery.trim($('#tel').val()),text5:jQuery.trim($('#addressa').val()),text6:jQuery.trim($('#hetong').val())}, function(msg) {
             msg = msg.substring(0, 1);
 			if(msg=='1'){
 				alert('提交成功');
@@ -79,3 +81,50 @@
 		}
 	};
 	</script>
+<script type="text/javascript">
+var flatType = document.getElementById('flatType');
+var flatname     = document.getElementById('flatname');
+//省份
+var flatTypeArr = [];
+flatTypeArr[0] = ['机关'];
+flatTypeArr[1] = ['学校'];
+flatTypeArr[2] = ['企业'];
+//市县,每个数组第一个元素为省份,其他的为这个省份下的市县
+var flatnameArr = [];
+flatnameArr[0] = ['机关',{loop $listcpa $cp}{php echo "'".$cp['title']."'"},{/loop}];
+flatnameArr[1] = ['学校',{loop $listcpb $cp}{php echo "'".$cp['title']."'"},{/loop}]; 
+flatnameArr[2] = ['企业',{loop $listcpc $cp}{php echo "'".$cp['title']."'"},{/loop}]; 
+
+//生成省份
+for(var key in flatTypeArr) {
+		var flatTypeOption = document.createElement('option');
+		flatTypeOption.value = flatTypeOption.text = flatTypeArr[key];
+		flatType.options.add(flatTypeOption);
+}
+//生成市县、区市'
+//@current为当前选择的select节点，即父类节点
+//@child为子类点
+//@childArr为子节点数组
+function showChild(current, child, childArr) {
+		var currentValue = current.value;
+		var count = childArr.length;
+		//每次切换市'把城市的子option长度设置市',即清除城市的选择,DOM对象select元素是长度是子option的个市'
+		child.length = 1;
+		for(var i = 0; i < count; i++) {
+				//判断所选的值即父类，与当前节点第一个数组元素是否相市'
+				if(currentValue == childArr[i][0]) {
+						//不取第一个数组元市'因为第一个是父类，所以j市'开始，而不市'
+						for(var j = 1; j < childArr[i].length; j++) {
+								var childOption = document.createElement('option');
+								//ie不支持option对象的value,所以加childOption.text
+								childOption.value = childOption.text = childArr[i][j];
+								child.options.add(childOption); 
+						}
+				}
+		}
+}
+//省份改变市'
+flatType.onchange = function() {
+		showChild(flatType, flatname, flatnameArr);
+}
+</script>

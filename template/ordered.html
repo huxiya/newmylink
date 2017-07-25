@@ -63,8 +63,7 @@
 		<div class="panel-body table-responsive">
 		<table class="table table-hover">
 			<thead class="navbar-inner">
-			<tr><th class='with-checkbox' style='width:30px;'>
-				<input type="checkbox" class="check_all" /></th>
+			<tr>
 				<th style="width:150px;">部门名称</th>
 				<th style='width:150px;'>编辑人员</th>
 				<th style='width:150px;'>单位名称</th>
@@ -74,8 +73,7 @@
 			</thead>
 			<tbody>
 			{loop $list $item}
-			<tr>  <td class="with-checkbox">
-				<input type="checkbox" name="check" value="{$item['id']}"></td>
+			<tr>
 				<td>{$item['department']}</td>
 				<td>{$item['maintain']}</td>
 				<td>{$item['company']}</td>
