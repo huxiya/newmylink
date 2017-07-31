@@ -66,6 +66,15 @@ p.error{
   background: url("../images/project.svg") no-repeat center;
   background-size: .8rem;
 }
+.icon-offer{
+  background: url("../images/office.svg") no-repeat center;
+  background-size: .8rem;
+}
+.icon-school{
+  background: url("../images/school.svg") no-repeat center;
+  background-size: .8rem;
+}
+
 /*login start*/
 .logo-title {
   padding: 1rem;
@@ -174,4 +183,14 @@ p.error{
 .item{
   padding-left: .1rem;
   border-bottom:1px solid #ccc;
+}
+
+/**/
+.unit-list{
+  margin-bottom: .2rem;
+  height: .8rem;
+  line-height: .8rem;
+  border: 1px solid #ddd;
+  border-radius: .08rem;
+  background:url(../images/more.svg) no-repeat right;
 }
